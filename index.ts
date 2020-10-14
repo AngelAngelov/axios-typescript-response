@@ -79,4 +79,5 @@ class Http {
 
 }
 
-export default Http;
+const http = new Http();
+export default http;
