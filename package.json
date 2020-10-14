@@ -1,0 +1,28 @@
+{
+  "name": "axios-response-types",
+  "version": "1.0.0",
+  "description": "Get axios AJAX response in typescript class objects",
+  "main": "./src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AngelAngelov/axios-typescript.git"
+  },
+  "keywords": [
+    "axios",
+    "typescript",
+    "response",
+    "class"
+  ],
+  "author": "Angel Angelov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AngelAngelov/axios-typescript/issues"
+  },
+  "homepage": "https://github.com/AngelAngelov/axios-typescript#readme",
+  "dependencies": {
+    "axios": "^0.20.0"
+  }
+}
