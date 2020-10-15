@@ -1,6 +1,14 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
 class Http {
+    /**
+     * HTTP GET request
+     * Returns Promise
+     * @param url String representation of url
+     * @param type Typescript class type
+     * @param useConstructor Boolean (default false). Indicates if we want to use class constructor (true) or use default constructor (false)
+     * @param config AxiosRequestConfig | undefined. Additional axios configuration
+     */
     public get<T>(url: string, type: (new (arg: any) => T), useConstructor: Boolean = false, config?: AxiosRequestConfig | undefined): Promise<any> {
         return new Promise(async (resolve, reject) => {
             try {
@@ -12,6 +20,14 @@ class Http {
         })
     }
 
+    /**
+     * HTTP DELETE request
+     * Returns Promise
+     * @param url String representation of url
+     * @param type Typescript class type
+     * @param useConstructor Boolean (default false). Indicates if we want to use class constructor (true) or use default constructor (false)
+     * @param config AxiosRequestConfig | undefined. Additional axios configuration
+     */
     public delete<T>(url: string, type: (new (arg: any) => T), useConstructor: Boolean = false, config?: AxiosRequestConfig | undefined): Promise<any> {
         return new Promise(async (resolve, reject) => {
             try {
@@ -23,6 +39,14 @@ class Http {
         })
     }
 
+    /**
+     * HTTP POST request
+     * Returns Promise
+     * @param url String representation of url
+     * @param type Typescript class type
+     * @param useConstructor Boolean (default false). Indicates if we want to use class constructor (true) or use default constructor (false)
+     * @param config AxiosRequestConfig | undefined. Additional axios configuration
+     */
     public post<T>(url: string, payload: any, type: (new (arg: any) => T), useConstructor: Boolean = false, config?: AxiosRequestConfig | undefined): Promise<any> {
         return new Promise(async (resolve, reject) => {
             try {
@@ -34,6 +58,14 @@ class Http {
         })
     }
 
+    /**
+     * HTTP PUT request
+     * Returns Promise
+     * @param url String representation of url
+     * @param type Typescript class type
+     * @param useConstructor Boolean (default false). Indicates if we want to use class constructor (true) or use default constructor (false)
+     * @param config AxiosRequestConfig | undefined. Additional axios configuration
+     */
     public put<T>(url: string, payload: any, type: (new (arg: any) => T), useConstructor: Boolean = false, config?: AxiosRequestConfig | undefined): Promise<any> {
         return new Promise(async (resolve, reject) => {
             try {
@@ -45,13 +77,19 @@ class Http {
         })
     }
 
-    private createObject(type: any, data: any, useConstructor: Boolean = false) {
+    /**
+     * Creates response object
+     * @param type Typescript class type to be returned
+     * @param data Response data
+     * @param useConstructor Boolean (default false). Indicates if we want to use class constructor (true) or use default constructor (false)
+     */
+    private createObject(type: any, data: any, useConstructor: Boolean = false): any {
         let result: any;
 
         if (useConstructor) {
             result = new type(data);
         } else {
-            result = new type(null);
+            result = new type();
             for (const key in data) {
                 if (Object.prototype.hasOwnProperty.call(result, key)) {
                     result[key] = data[key];
@@ -62,6 +100,12 @@ class Http {
         return result;
     }
 
+    /**
+     * Parse response data, before creating response object
+     * @param type Typescript class type to be returned
+     * @param data Response data
+     * @param useConstructor Boolean (default false). Indicates if we want to use class constructor (true) or use default constructor (false)
+     */
     private parseData(type: any, data: any, useConstructor: Boolean = false) {
         if (!data) {
             return;

@@ -8,13 +8,13 @@ Get axios AJAX response in typescript class objects
 * PUT
 
 ## Parameters
-> http.get<T>(url: string, type: (new (arg: any) => T), useConstructor: Boolean, config?: AxiosRequestConfig | undefined)
+> **http.get<T>(url: string, type: (new (arg: any) => T), useConstructor: Boolean, config?: AxiosRequestConfig | undefined)**
 > * url: API url
 > * type: Expected data type to be returned from the API 
 > * useConstructor: Indicates if the class constructor should be used (false by default)
 > * config: Axios configuration if needed
   
-> http.post<T>(url: string, payload: any, type: (new (arg: any) => T), useConstructor: Boolean, config?: AxiosRequestConfig | undefined): Promise<any>
+> **http.post<T>(url: string, payload: any, type: (new (arg: any) => T), useConstructor: Boolean, config?: AxiosRequestConfig | undefined): Promise<any>**
 > * url: API url
 > * payload: Data that will be put in the request body
 > * type: Expected data type to be returned from the API 
