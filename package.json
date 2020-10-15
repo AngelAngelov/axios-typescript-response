@@ -16,7 +16,7 @@
     "response",
     "class"
   ],
-  "author": "Angel Angelov",
+  "author": "Angel Angelov <angel.s.angelov@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/AngelAngelov/axios-typescript/issues"

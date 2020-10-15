@@ -1,6 +1,10 @@
 # axios-typescript-response
 Get axios AJAX response in typescript class objects
 
+## Install
+
+> * **npm install axios-typescript-response**
+
 ## Supported RESTfull verbs 
 * GET
 * DELETE
