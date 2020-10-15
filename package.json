@@ -1,5 +1,5 @@
 {
-  "name": "axios-response-types",
+  "name": "axios-typescript-response",
   "version": "1.0.0",
   "description": "Get axios AJAX response in typescript class objects",
   "main": "./index.ts",

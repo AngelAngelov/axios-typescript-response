@@ -1,4 +1,4 @@
-# axios-typescript
+# axios-typescript-response
 Get axios AJAX response in typescript class objects
 
 ## Supported RESTfull verbs 
