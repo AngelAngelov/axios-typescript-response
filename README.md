@@ -23,7 +23,7 @@ Get axios AJAX response in typescript class objects
   
 ## Usage
 
-### Typescript Class with default
+### Typescript Class with default constructor
 ```
 class Post{
     id: number = 0;
