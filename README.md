@@ -44,15 +44,12 @@ import Http from 'axios-typescript-response';
 
 http
   .get<Post>("https://jsonplaceholder.typicode.com/posts/1", Post)
-  .then((response) => console.log(response instanceof Post))
-  
-  //result in console is true
+  .then((response) => console.log(response instanceof Post)) //output: true
 
-axios
-  .get<Post>("https://jsonplaceholder.typicode.com/posts/1")
-  .then((response) => console.log(response.data instanceof Post))
-  
-  //result in console is false
+//Calling the function without type parameter returns axios default function
+http
+  .get("https://jsonplaceholder.typicode.com/posts/1")
+  .then((response) => console.log(response.data instanceof Post)) //output: false
 ```
 
 ### Typescript Class with constructor
@@ -80,15 +77,12 @@ import Http from 'axios-typescript-response';
 
 http
   .get<Post>("https://jsonplaceholder.typicode.com/posts/1", Post, true)
-  .then((response) => console.log(response instanceof Post))
-  
-  //result in console is true
+  .then((response) => console.log(response instanceof Post)) //output: true
 
-axios
-  .get<Post>("https://jsonplaceholder.typicode.com/posts/1")
-  .then((response) => console.log(response.data instanceof Post))
-  
-  //result in console is false
+//Calling the function without type parameter returns axios default function
+http
+  .get("https://jsonplaceholder.typicode.com/posts/1")
+  .then((response) => console.log(response.data instanceof Post)) //output: false
 ```
 
 ### Use axios interceptors
@@ -96,12 +90,12 @@ axios
 To add additional axios configuration, you must import the class instance and create the http object after the configuration is added.
 
 ```
-import axios from 'axios';
 import store from '../store/store';
 import router from '../router/router';
-import { Http } from 'axios-typescript-response';
+import Http from 'axios-typescript-response';
 
-axios.interceptors.request.use(config => {
+Http.axiosInstance.interceptors.request.use(config => {
+    debugger
     config.baseURL = store.getters.baseUrl;
 
     //Auth token
@@ -112,14 +106,15 @@ axios.interceptors.request.use(config => {
     }
 
     //Culture
-    config.headers["Accept-Language"] =  store.getters.Language;
+    const lang = store.getters.Language;
+    config.headers["Accept-Language"] = lang || 'bg';
     config.headers["Accept"] = '*/*';
 
     return config;
 });
 
 // Add a 401 response interceptor
-axios.interceptors.response.use(response => {
+Http.axiosInstance.interceptors.response.use(response => {
     return response;
 }, function (error) {
     if (401 === error.response.status) {
@@ -131,5 +126,5 @@ axios.interceptors.response.use(response => {
     }
 });
 
-export default new Http();
+export default Http;
 ```
