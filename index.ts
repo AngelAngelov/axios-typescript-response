@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
-class Http {
+export class Http {
     /**
      * HTTP GET request
      * Returns Promise
