@@ -87,8 +87,6 @@ http
 
 ### Use axios interceptors
 
-To add additional axios configuration, you must import the class instance and create the http object after the configuration is added.
-
 ```
 import store from '../store/store';
 import router from '../router/router';
