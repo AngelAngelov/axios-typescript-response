@@ -63,6 +63,13 @@ export default class HelloWorld extends Vue {
     );
 
     console.log("Post Result", postResponse);
+
+    const axiosPost = await http.post(
+      "https://jsonplaceholder.typicode.com/posts",
+      newPost
+    );
+
+    console.log("Axios Post Result", axiosPost.data);
   }
 }
 </script>
