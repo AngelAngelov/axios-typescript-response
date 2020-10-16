@@ -38,6 +38,10 @@ class Post{
 ```
 
 ```
+import Http from 'axios-typescript-response';
+
+...
+
 http
   .get<Post>("https://jsonplaceholder.typicode.com/posts/1", Post)
   .then((response) => console.log(response instanceof Post))
@@ -70,6 +74,10 @@ class Post{
 ```
 
 ```
+import Http from 'axios-typescript-response';
+
+...
+
 http
   .get<Post>("https://jsonplaceholder.typicode.com/posts/1", Post, true)
   .then((response) => console.log(response instanceof Post))
@@ -81,4 +89,47 @@ axios
   .then((response) => console.log(response.data instanceof Post))
   
   //result in console is false
+```
+
+### Use axios interceptors
+
+To add additional axios configuration, you must import the class instance and create the http object after the configuration is added.
+
+```
+import axios from 'axios';
+import store from '../store/store';
+import router from '../router/router';
+import { Http } from 'axios-typescript-response';
+
+axios.interceptors.request.use(config => {
+    config.baseURL = store.getters.baseUrl;
+
+    //Auth token
+    const token = store.state.user!.token;
+    
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+    }
+
+    //Culture
+    config.headers["Accept-Language"] =  store.getters.Language;
+    config.headers["Accept"] = '*/*';
+
+    return config;
+});
+
+// Add a 401 response interceptor
+axios.interceptors.response.use(response => {
+    return response;
+}, function (error) {
+    if (401 === error.response.status) {
+        store.dispatch('logout').then(() => {
+            router.push('/login');
+        });
+    } else {
+        return Promise.reject(error);
+    }
+});
+
+export default new Http();
 ```
